@@ -93,3 +93,4 @@ To remove all resources:
 cd infra
 terraform destroy
 ```# E-Commerce-CICD-with-ECS
+# e-commerce-cicd-pipeline
