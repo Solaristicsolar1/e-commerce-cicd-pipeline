@@ -57,6 +57,72 @@ body {
     color: var(--text-secondary, #666666) !important;
 }
 
+/* Dark theme specific overrides */
+[data-theme="dark"] .bg-white {
+    background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .text-white {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-black {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] p {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .card {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .dropdown-menu {
+    background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .navbar-brand h1 {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .nav-link {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .btn-outline-light {
+    color: var(--text-primary) !important;
+    border-color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .btn-outline-light:hover {
+    background-color: var(--text-primary) !important;
+    color: var(--bg-primary) !important;
+}
+
 /*** Spinner ***/
 #spinner {
     opacity: 0;
