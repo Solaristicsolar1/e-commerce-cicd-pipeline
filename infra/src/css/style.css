@@ -5,7 +5,57 @@
     --light: #F4F7FE;
     --dark: #14183E;
 }
+/* Dark theme variables */
+[data-theme="dark"] {
+    --primary: #55c613;
+    --secondary: #15e1bc;
+    --light: #1a1a1a;
+    --dark: #ffffff;
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+}
 
+/* Light theme variables */
+[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #F4F7FE;
+    --text-primary: #14183E;
+    --text-secondary: #666666;
+}
+
+/* Theme toggle button */
+#themeToggle {
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#themeToggle:hover {
+    transform: scale(1.1);
+}
+
+/* Apply theme colors */
+body {
+    background-color: var(--bg-primary, #ffffff);
+    color: var(--text-primary, #14183E);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bg-light {
+    background-color: var(--bg-secondary, #F4F7FE) !important;
+}
+
+.text-dark {
+    color: var(--text-primary, #14183E) !important;
+}
+
+.text-muted {
+    color: var(--text-secondary, #666666) !important;
+}
 
 /*** Spinner ***/
 #spinner {
