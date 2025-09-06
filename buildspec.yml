@@ -1,5 +1,11 @@
 version: 0.2
 
+env:
+  variables:
+    AWS_DEFAULT_REGION: us-east-1
+    AWS_ACCOUNT_ID: 192018386876
+    ECR_REPOSITORY_NAME: web-app
+
 phases:
   pre_build:
     commands:
@@ -8,7 +14,9 @@ phases:
       - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPOSITORY_NAME
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
-  
+      - echo "Repository URI is $REPOSITORY_URI"
+      - echo "Image tag is $IMAGE_TAG"
+
   build:
     commands:
       - echo Build started on `date`
@@ -16,7 +24,8 @@ phases:
       - cd infra/src
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
-      - cd ../..   # Return to root for post_build
+      - cd ../..
+      - echo Build completed successfully
 
   post_build:
     commands:
@@ -25,11 +34,9 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - envsubst < infra/src/taskdef_template.json > taskdef.json
-      - envsubst < infra/src/appspec_template.yaml > appspec.yaml
+      - printf '[{"name":"web-tsk-df","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - cat imagedefinitions.json
 
 artifacts:
   files:
-    - appspec.yaml
-    - taskdef.json
-  discard-paths: yes
+    - imagedefinitions.json
