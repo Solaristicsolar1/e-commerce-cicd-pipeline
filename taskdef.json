@@ -8,7 +8,7 @@
   "containerDefinitions": [
     {
       "name": "web-app",
-      "image": "<IMAGE1_URI>",
+      "image": "192018386876.dkr.ecr.us-east-1.amazonaws.com/web-app:latest",
       "portMappings": [
         {
           "containerPort": 80,
