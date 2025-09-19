@@ -36,7 +36,11 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"web-app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
+      - echo Updating task definition with new image...
+      - sed -i "s|<IMAGE1_URI>|$REPOSITORY_URI:$IMAGE_TAG|g" taskdef.json
 
 artifacts:
   files:
     - imagedefinitions.json
+    - appspec.yaml
+    - taskdef.json
