@@ -37,7 +37,8 @@ phases:
       - printf '[{"name":"web-app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
       - echo Updating task definition with new image...
-      - python3 -c "
+      - |
+        python3 -c "
         import json
         with open('taskdef.json', 'r') as f:
             taskdef = json.load(f)
