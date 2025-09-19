@@ -37,8 +37,14 @@ phases:
       - printf '[{"name":"web-app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
       - echo Updating task definition with new image...
-      - sed "s|<IMAGE1_URI>|$REPOSITORY_URI:$IMAGE_TAG|g" taskdef.json > taskdef_updated.json
-      - mv taskdef_updated.json taskdef.json
+      - python3 -c "
+        import json
+        with open('taskdef.json', 'r') as f:
+            taskdef = json.load(f)
+        taskdef['containerDefinitions'][0]['image'] = '$REPOSITORY_URI:$IMAGE_TAG'
+        with open('taskdef.json', 'w') as f:
+            json.dump(taskdef, f, indent=2)
+        "
 
 artifacts:
   files:
