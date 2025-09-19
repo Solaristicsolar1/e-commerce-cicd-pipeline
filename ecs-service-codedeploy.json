@@ -1,0 +1,29 @@
+{
+  "serviceName": "ecommerce-service",
+  "cluster": "ecommerce-cluster",
+  "taskDefinition": "ecommerce-task",
+  "loadBalancers": [
+    {
+      "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:192018386876:targetgroup/ecommerce-blue-tg/98843c629beeda11",
+      "containerName": "web-app",
+      "containerPort": 80
+    }
+  ],
+  "desiredCount": 2,
+  "launchType": "FARGATE",
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "subnets": [
+        "subnet-05e73de0ba68805de",
+        "subnet-009e85b610f93f705"
+      ],
+      "securityGroups": [
+        "sg-0b8509ac19ac1fe1f"
+      ],
+      "assignPublicIp": "DISABLED"
+    }
+  },
+  "deploymentController": {
+    "type": "CODE_DEPLOY"
+  }
+}
